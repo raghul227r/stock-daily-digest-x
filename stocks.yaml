@@ -1,0 +1,67 @@
+# Stocks to track. Add one entry per stock.
+#
+# Fields:
+#   name      (required) company name as people write it on X (also used by --only)
+#   symbol    (optional) NSE ticker; used for the label and the auto-built query
+#   aliases   (optional) other names/spellings to search for
+#   full_name (optional) label used in the summary prompt
+#   query     (optional) your own X search query; overrides the auto-built one
+#
+# If `query` is omitted, one is built like:  ("Name" OR "alias" OR SYMBOL OR #Name)
+# Stocks whose names are common words (CAMS, Amber, BSE, NSDL...) have custom
+# queries below so the results aren't full of unrelated posts. Check each stock's
+# first few digests and tune its query if it looks off.
+
+settings:
+  max_posts_per_stock: 10        # X charges per post read; lower = cheaper
+  timezone: Asia/Kolkata
+  query_suffix: " -is:retweet lang:en"
+  # model: claude-sonnet-5-5     # or set CLAUDE_MODEL in .env
+
+stocks:
+  - name: Polycab India
+    symbol: POLYCAB
+    aliases: ["Polycab"]
+
+  - name: Paras Defence
+    symbol: PARAS
+    # "PARAS" alone is a common name/word, so it is left out of the query.
+    query: '("Paras Defence" OR "Paras Defence and Space" OR #ParasDefence)'
+
+  - name: CAMS
+    symbol: CAMS
+    full_name: "Computer Age Management Services (NSE: CAMS)"
+    query: '("Computer Age Management Services" OR (CAMS (stock OR share OR shares OR NSE OR RTA OR "mutual fund" OR results OR earnings)))'
+
+  - name: Syrma SGS
+    symbol: SYRMA
+    aliases: ["Syrma SGS Technology", "Syrma"]
+
+  - name: Sona Comstar
+    symbol: SONACOMS
+    aliases: ["Sona BLW", "Sona BLW Precision Forgings"]
+
+  - name: Data Patterns
+    symbol: DATAPATTNS
+    full_name: "Data Patterns (India) Ltd (NSE: DATAPATTNS)"
+    query: '("Data Patterns India" OR DATAPATTNS OR #DataPatterns OR ("Data Patterns" (defence OR defense OR stock OR share OR NSE OR order OR results)))'
+
+  - name: Avalon Technologies
+    symbol: AVALON
+    query: '("Avalon Technologies" OR #AvalonTechnologies OR (Avalon (stock OR share OR shares OR NSE OR EMS OR results)))'
+
+  - name: Amber Enterprises
+    symbol: AMBER
+    query: '("Amber Enterprises" OR "Amber Enterprises India" OR #AmberEnterprises)'
+
+  - name: CDSL
+    symbol: CDSL
+    aliases: ["Central Depository Services"]
+
+  - name: Pricol
+    symbol: PRICOLLTD
+    aliases: ["Pricol Ltd"]
+
+  - name: Max Healthcare
+    symbol: MAXHEALTH
+    aliases: ["Max Healthcare Institute"]
